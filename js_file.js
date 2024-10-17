@@ -1,14 +1,15 @@
 let GRID_LENGTH, CARD_HEIGHT, FLEX_PERCENT;
 let mouseHeldDown = false;
-const CONTAINER_WIDTH = 600; // px, need to manually set = to css container width
+let brushColor;
+const screen_WIDTH = 600; // px, need to manually set = to css screen width
 const MAX_GRID_LENGTH = 100;
 
-// creates lengthxlength grid, restricted to container width
-// cards: attach to container, hover event changes color,
+// creates lengthxlength grid, restricted to screen width
+// cards: attach to screen, hover event changes color,
 // intialize reset button
 function createGrid() {
     let i, j;
-    const container = document.querySelector(".container")
+    const screen = document.querySelector(".screen")
     for (i = 0; i < GRID_LENGTH; ++i) {
         for(j = 0; j < GRID_LENGTH; ++j) {
             const card = document.createElement("div");
@@ -17,7 +18,7 @@ function createGrid() {
             card.style.flex = "1 0 " + FLEX_PERCENT + "%";
             card.addEventListener("mouseover", () => {
                 if (mouseHeldDown)
-                    card.style.backgroundColor = "blue";
+                    card.style.backgroundColor = brushColor;
             });
             card.addEventListener("click", () => {
                 if(mouseHeldDown)
@@ -25,7 +26,7 @@ function createGrid() {
                 else
                     mouseHeldDown = true;
             });
-            container.appendChild(card);
+            screen.appendChild(card);
         }
     }
     intializeResetBtn();
@@ -35,8 +36,8 @@ function createGrid() {
 function promptGridLength() {
     do {
         GRID_LENGTH = parseInt(prompt("choose a grid length 1-100", 16));
-        CARD_HEIGHT = CONTAINER_WIDTH / GRID_LENGTH;
-        FLEX_PERCENT = (CARD_HEIGHT / CONTAINER_WIDTH) * 100;
+        CARD_HEIGHT = screen_WIDTH / GRID_LENGTH;
+        FLEX_PERCENT = (CARD_HEIGHT / screen_WIDTH) * 100;
     } while(GRID_LENGTH > MAX_GRID_LENGTH);
 }
 
@@ -48,5 +49,18 @@ function intializeResetBtn() {
     });
 }
 
+function intializePalette() {
+    const palette = document.querySelector(".palette");
+    const colors = palette.children;
+    for(let i = 0; i < colors.length; ++i) {
+        let color = colors[i].getAttribute("class"); // intialize color based on class_names of buttons in palette
+        colors[i].style.backgroundColor = color;
+        colors[i].addEventListener("click", () => {
+            brushColor = color;
+        });
+    }
+}
+
 promptGridLength();
 createGrid();
+intializePalette();

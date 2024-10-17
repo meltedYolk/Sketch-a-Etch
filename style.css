@@ -26,7 +26,7 @@ body {
     background-color: violet;
 }
 
-.container {
+.screen {
     align-self: center;
     background-color: black;
     min-width: 600px;
@@ -48,4 +48,27 @@ body {
     margin-left: 48px;
     padding: 30px;
     font-size: 24px;
+}
+
+.workspace {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+}
+.palette {
+    height: 300px;
+    flex: 0 1 300px;
+    border-width: 10px;
+    border-color: black;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.palette > * {
+    flex: 1 0 60px;
+    height: 100px;
 }
