@@ -6,15 +6,32 @@ body {
     min-height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    gap: 0px;
+    margin: 0px;
+}
+
+.header, .footer{
+    font-family: 'Roboto', sans-serif;
+    color: darkslategrey;
+    font-weight: 900;
+    font-size: 48px;
+    flex: 1;
+    height: 300px;
+    display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: violet;
 }
 
 .container {
+    align-self: center;
     background-color: black;
-    width: 480px;
+    min-width: 600px;
+    min-height: 600pxs;
     padding: 36px;
-    margin-bottom: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,4 +42,10 @@ body {
     height: 30px;
     flex: 1 0 6.2%;
     background-color: whitesmoke;
+}
+
+.reset {
+    margin-left: 48px;
+    padding: 30px;
+    font-size: 24px;
 }
